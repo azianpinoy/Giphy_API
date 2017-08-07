@@ -1,0 +1,21 @@
+#topicInput{
+	margin-bottom: 10px;
+}
+
+#topicForm{
+	float: right;
+	margin-right: 20px;
+}
+
+button{
+	margin: 5px;
+}
+
+h3{
+	width: 50px;
+}
+
+.gifDiv{
+	float: left;
+	margin: 10px;
+}
