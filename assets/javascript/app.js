@@ -22,7 +22,15 @@ $("#addTopic").on("click", function(event){
 	event.preventDefault();
 
 	var newTopic = $("#topicInput").val().trim();
-	topicArray.push(newTopic);
+	if(newTopic == ""){
+		alert("Please enter a topic first!");
+	}
+	else if(topicArray.indexOf(newTopic) != -1){
+		alert("Topic already added!");
+	}
+	else{
+		topicArray.push(newTopic);
+	}
 
 	addButtons();
 
