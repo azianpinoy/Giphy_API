@@ -72,7 +72,6 @@ $.ajax({
 
 //On-Click function for gifs//////////////////////////////////////////////////////////////////////////
 $(document).on("click", ".gif", function(){
-
 	var id = this.id;
 	var queryURL = "http://api.giphy.com/v1/gifs/" + id + "?api_key=68fb52e019da42ae8d92cea64ecce958";
 	
@@ -83,9 +82,9 @@ $(document).on("click", ".gif", function(){
   	method: 'GET'
 	}).done(function(response) {
 		newURL = response.data.images.fixed_height.url;
-	})	
+	});	
 
-	this.src = newURL;	
+	$(this).attr("src", newURL);
 })
 
 //Initiate starter-topics to HTML//////////////////////////////////////////////////////////////////////
