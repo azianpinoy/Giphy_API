@@ -1,8 +1,6 @@
 //Variables////////////////////////////////////////////////////////////////////////////////////////////
 var topicArray = ["basketball", "soccer", "tennis", "football", "hockey"];
 var topic = "";
-var currentURL = "";
-var newURL = "";
 
 //Fucnction to append buttons to HTML from array///////////////////////////////////////////////////////
 function addButtons(){
@@ -61,6 +59,12 @@ $.ajax({
 			gifImage.addClass("gif");
 
 			gifImage.attr("id", response.data[i].id);
+
+			gifImage.attr("state", "still")
+
+			gifImage.attr("stillURL", response.data[i].images.fixed_height_still.url)
+
+			gifImage.attr("animatedURL", response.data[i].images.fixed_height.url)
 		
 			gifDiv.append(gifImage);
 
@@ -72,19 +76,16 @@ $.ajax({
 
 //On-Click function for gifs//////////////////////////////////////////////////////////////////////////
 $(document).on("click", ".gif", function(){
-	var id = this.id;
-	var queryURL = "http://api.giphy.com/v1/gifs/" + id + "?api_key=68fb52e019da42ae8d92cea64ecce958";
-	
-	currentURL = this.src;
+	var state = $(this).attr("state");
 
-	$.ajax({
-  	url: queryURL,
-  	method: 'GET'
-	}).done(function(response) {
-		newURL = response.data.images.fixed_height.url;
-	});	
-
-	$(this).attr("src", newURL);
+	if(state == "still"){
+        $(this).attr("src", $(this).attr("animatedURL"));
+        $(this).attr("state", "animated");
+      }
+      else{
+       $(this).attr("src", $(this).attr("stillURL"));
+       $(this).attr("state", "still"); 
+      }
 })
 
 //Initiate starter-topics to HTML//////////////////////////////////////////////////////////////////////
